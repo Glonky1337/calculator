@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+* {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    background-color: rgb(23, 76, 155);
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+#calculator {
+    padding: 20px;
+    transform: scale(.75); /* reduce to 75% of original size */
+    border-radius: 10px;
+    background: rgb(29, 98, 201);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+#calculator-container {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4, 100px);
+    /* repeat() specifies that the grid should have 4 columns, each with a fixed width of 100px */
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+    /* minmax() sets the min and max height for the first row of the grid. repeat() specifies that the next 5 rows should have a fixed height of 100px */
+    gap: 10px;
+    background: rgb(29, 98, 201);
+}
+
+#display-container {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px;
+    grid-column: 1 / -1;
+    /* "1" specifies that start line of the grid item, "/-1" specifies the end line of the grid item. -1 represents the end of the grid.
+    It counts from the end of the grid. so if we do "grid-column: 1 / -2, it'll cause the #clear-button to sit on the first row*/
+    background: rgb(78, 78, 78);
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 8px;
+    box-shadow: inset 5px 5px 3px rgb(59, 59, 59),
+                inset -5px -5px 3px rgb(59, 59, 59);
+}
+
+#previous-operand-container, #current-operand {
+    background: none;
+}
+
+button {
+    border: none;
+    background-color: rgb(78, 78, 78);
+    font-size: 1.75rem;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transform: translate(1) translate(0, 0);
+    transition: transform 225ms, box-shadow 225ms;
+}
+  
+  button:hover {
+    transform: scale(1.05) translate(0, -0.15rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.35);
+}
+  
+  button:active {
+    transform: scale(1) translate(0, 0.15rem);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.operand:hover {
+    background-color: rgb(93, 93, 93);
+}
+
+#clear-button:hover {
+    background-color: rgb(255, 77, 72);
+}
+
+#delete-button:hover {
+    background-color: rgb(255, 77, 72);
+}
+
+.operator:hover {
+    background-color: rgb(161, 87, 239);
+}
+
+#equal-button {
+    grid-column: 3 / -1;
+}
+
+#equal-button:hover {
+    background-color: rgb(14, 186, 112);
+}
