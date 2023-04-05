@@ -53,7 +53,7 @@ body {
                 inset -5px -5px 3px rgb(59, 59, 59);
 }
 
-#previous-operand-container, #current-operand {
+#previous-operand-container, #current-operand-container {
     background: none;
 }
 
