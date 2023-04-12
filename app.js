@@ -159,8 +159,8 @@ function add(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join(''));
     let b = parseFloat(variableTwo.join(''));
     answer = a + b;
-    // set variableOne = answer
     variableOne.length = 0;
+    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
     // empty variableTwo
     variableTwo.length = 0;
@@ -175,8 +175,8 @@ function subtract(variableOne, variableTwo) {
     let b = parseFloat(variableTwo.join(''));
     answer = a - b;
     console.log(`${a} - ${b} = ${answer}`);
-    // set variableOne = answer
     variableOne.length = 0;
+    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
     // empty variableTwo
     variableTwo.length = 0;
@@ -190,8 +190,8 @@ function multiply(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join(''));
     let b = parseFloat(variableTwo.join(''));
     answer = a * b;
-    // set variableOne = answer
     variableOne.length = 0;
+    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
     // empty variableTwo
     variableTwo.length = 0;
@@ -204,9 +204,13 @@ function multiply(variableOne, variableTwo) {
 function divide(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join(''));
     let b = parseFloat(variableTwo.join(''));
-    answer = a / b;
-    // set variableOne = answer
+    if (b === 0) {
+        answer = "lmao";
+    } else {
+        answer = a / b;
+    }
     variableOne.length = 0;
+    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
     // empty variableTwo
     variableTwo.length = 0;
