@@ -21,8 +21,12 @@ calculatorContainer.addEventListener('click', function(e) {
 const currentOperandContainer = document.getElementById('current-operand-container');
 function updateCurrentOperandContainer(e) {
     let display = e.join('');
-    display = parseFloat(display);
-    currentOperandContainer.textContent = display;
+    if (display === '') {
+        currentOperandContainer.textContent = '';
+    } else {
+        display = parseFloat(display);
+        currentOperandContainer.textContent = display;
+    }
 };
 
 const previousOperandContainer = document.getElementById('previous-operand-container');
@@ -51,7 +55,6 @@ function assignVariableOne(buttonValue) {
         case '.':
             if (!decimalAdded) { // check if a decimal point has already been added
                 variableOne.push(buttonValue);
-                console.log(variableOne);
                 updateCurrentOperandContainer(variableOne);
                 decimalAdded = true; // set flag to true
             }
@@ -62,6 +65,7 @@ function assignVariableOne(buttonValue) {
         case 'delete':
             deleteValue(variableOne);
             updateCurrentOperandContainer(variableOne);
+            console.log(variableOne);
             break;
         case 'percent':
             percentConversion(variableOne);
@@ -197,7 +201,6 @@ function subtract(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join(''));
     let b = parseFloat(variableTwo.join(''));
     answer = a - b;
-    console.log(`${a} - ${b} = ${answer}`);
     variableOne.length = 0;
     // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
