@@ -3,6 +3,7 @@ let operatorValue = undefined;
 let variableTwo = [];
 
 const calculatorContainer = document.querySelector('#calculator-container');
+let decimalAdded = false; // initialize the flag
 
 calculatorContainer.addEventListener('click', function(e) {
     if (e.target.tagName === 'BUTTON') {
@@ -44,9 +45,16 @@ function assignVariableOne(buttonValue) {
         case '8':
         case '9':
         case '0':
-        case '.':
             variableOne.push(buttonValue);
             updateCurrentOperandContainer(variableOne);
+            break;
+        case '.':
+            if (!decimalAdded) { // check if a decimal point has already been added
+                variableOne.push(buttonValue);
+                console.log(variableOne);
+                updateCurrentOperandContainer(variableOne);
+                decimalAdded = true; // set flag to true
+            }
             break;
         case 'clear':
             clearDisplay();
@@ -61,18 +69,22 @@ function assignVariableOne(buttonValue) {
         case 'divide':
             operatorValue = '÷';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
         case 'multiply':
             operatorValue = 'x';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
         case 'subtract':
             operatorValue = '-';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
         case 'add':
             operatorValue = '+';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
     }
 }
@@ -89,9 +101,15 @@ function assignVariableTwo(buttonValue) {
         case '8':
         case '9':
         case '0':
-        case '.':
             variableTwo.push(buttonValue);
             updateCurrentOperandContainer(variableTwo);
+            break;
+        case '.':
+            if (!decimalAdded) { // check if a decimal point has already been added
+                variableTwo.push(buttonValue);
+                updateCurrentOperandContainer(variableTwo);
+                decimalAdded = true; // set flag to true
+            }
             break;
         case 'clear':
             clearDisplay();
@@ -107,21 +125,25 @@ function assignVariableTwo(buttonValue) {
             divide(variableOne, variableTwo);
             operatorValue = '÷';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
         case 'multiply':
             multiply(variableOne, variableTwo);
             operatorValue = 'x';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
         case 'subtract':
             subtract(variableOne, variableTwo);
             operatorValue = '-';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
         case 'add':
             add(variableOne, variableTwo);
             operatorValue = '+';
             updatePreviousOperandContainer(variableOne, operatorValue);
+            decimalAdded = false;
             break;
         case 'equals':
             switch (operatorValue) {
@@ -146,6 +168,7 @@ function clearDisplay() {
     variableOne.length = 0;
     operatorValue = undefined;
     variableTwo.length = 0;
+    decimalAdded = false;
     currentOperandContainer.textContent = "";
     previousOperandContainer.textContent = "";
 }
