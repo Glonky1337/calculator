@@ -44,7 +44,7 @@ function assignVariableOne(buttonValue) {
         case '8':
         case '9':
         case '0':
-        case 'decimal':
+        case '.':
             variableOne.push(buttonValue);
             updateCurrentOperandContainer(variableOne);
             break;
@@ -89,7 +89,7 @@ function assignVariableTwo(buttonValue) {
         case '8':
         case '9':
         case '0':
-        case 'decimal':
+        case '.':
             variableTwo.push(buttonValue);
             updateCurrentOperandContainer(variableTwo);
             break;
