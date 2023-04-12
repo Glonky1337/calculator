@@ -56,7 +56,7 @@ function assignVariableOne(buttonValue) {
             updateCurrentOperandContainer(variableOne);
             break;
         case 'percent':
-            // execute function to convert current decimal to percent & vice versa [need to build - mimic phone functionality]
+            percentConversion(variableOne);
             break;
         case 'divide':
             operatorValue = '÷';
@@ -101,7 +101,7 @@ function assignVariableTwo(buttonValue) {
             updateCurrentOperandContainer(variableTwo);
             break;
         case 'percent':
-            // execute function to convert current decimal to percent & vice versa [need to build - mimic phone functionality]
+            percentConversion(variableTwo);
             break;
         case 'divide':
             divide(variableOne, variableTwo);
@@ -214,4 +214,20 @@ function divide(variableOne, variableTwo) {
     operatorValue = undefined;
     currentOperandContainer.textContent = answer;
     previousOperandContainer.textContent = "";
+}
+
+function percentConversion(e) {
+    parsedNumber = parseFloat(e.join(''));
+    if (parsedNumber.toString().includes('.')) {
+        answer = parsedNumber * 100;
+        e.length = 0;
+        e.push(...answer.toString().split(""));
+        currentOperandContainer.textContent = answer;
+    } else {
+        answer = parsedNumber / 100;
+        e.length = 0;
+        e.push(...answer.toString().split(""));
+        currentOperandContainer.textContent = answer;
+    }
+    return e;
 }
