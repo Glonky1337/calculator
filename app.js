@@ -65,9 +65,10 @@ function assignVariableOne(buttonValue) {
         case 'delete':
             deleteValue(variableOne);
             updateCurrentOperandContainer(variableOne);
-            console.log(variableOne);
+            variableOne = percentConversion(variableOne);
             break;
         case 'percent':
+            console.log(variableOne);
             percentConversion(variableOne);
             break;
         case 'divide':
@@ -123,49 +124,64 @@ function assignVariableTwo(buttonValue) {
             updateCurrentOperandContainer(variableTwo);
             break;
         case 'percent':
-            percentConversion(variableTwo);
+            console.log(variableOne);
+            variableOne = percentConversion(variableOne);
             break;
         case 'divide':
-            divide(variableOne, variableTwo);
+            evaluateExpression(variableOne, operatorValue, variableTwo);
             operatorValue = '÷';
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
             break;
         case 'multiply':
-            multiply(variableOne, variableTwo);
+            evaluateExpression(variableOne, operatorValue, variableTwo);
             operatorValue = 'x';
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
             break;
         case 'subtract':
-            subtract(variableOne, variableTwo);
+            evaluateExpression(variableOne, operatorValue, variableTwo);
             operatorValue = '-';
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
             break;
         case 'add':
-            add(variableOne, variableTwo);
+            evaluateExpression(variableOne, operatorValue, variableTwo);
             operatorValue = '+';
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
+            console.log(`variableOne: ${variableOne}`);
+            console.log(`operatorValue: ${operatorValue}`);
+            console.log(`variableTwo: ${variableTwo}`);
             break;
         case 'equals':
-            switch (operatorValue) {
-                case '÷':
-                    divide(variableOne, variableTwo);
-                    break;
-                case 'x':
-                    multiply(variableOne, variableTwo);
-                    break;
-                case '-':
-                    subtract(variableOne, variableTwo);
-                    break;
-                case '+':
-                    add(variableOne, variableTwo);
-                    break;
-            }
+            console.log(`variableOne: ${variableOne}`);
+            console.log(`operatorValue: ${operatorValue}`);
+            console.log(`variableTwo: ${variableTwo}`);
+            evaluateExpression(variableOne, operatorValue, variableTwo);
+            console.log(`variableOne: ${variableOne}`);
+            console.log(`operatorValue: ${operatorValue}`);
+            console.log(`variableTwo: ${variableTwo}`);
             break;
     }
+}
+
+function evaluateExpression(variableOne, operatorValue, variableTwo) {
+    switch (operatorValue) {
+        case '÷':
+            divide(variableOne, variableTwo);
+            break;
+        case 'x':
+            multiply(variableOne, variableTwo);
+            break;
+        case '-':
+            subtract(variableOne, variableTwo);
+            break;
+        case '+':
+            add(variableOne, variableTwo);
+            break;
+    }
+    return;
 }
 
 function clearDisplay() {
@@ -183,65 +199,49 @@ function deleteValue(e) {
 
 // Math functions
 function add(variableOne, variableTwo) {
-    let a = parseFloat(variableOne.join(''));
-    let b = parseFloat(variableTwo.join(''));
+    let a = parseFloat(variableOne.join('')) || 0;
+    let b = parseFloat(variableTwo.join('')) || 0;
     answer = a + b;
     variableOne.length = 0;
-    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
-    // empty variableTwo
     variableTwo.length = 0;
-    // remove value for operatorValue
-    operatorValue = undefined;
     currentOperandContainer.textContent = answer;
     previousOperandContainer.textContent = "";
 }
 
 function subtract(variableOne, variableTwo) {
-    let a = parseFloat(variableOne.join(''));
-    let b = parseFloat(variableTwo.join(''));
+    let a = parseFloat(variableOne.join('')) || 0;
+    let b = parseFloat(variableTwo.join('')) || 0;
     answer = a - b;
     variableOne.length = 0;
-    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
-    // empty variableTwo
     variableTwo.length = 0;
-    // remove value for operatorValue
-    operatorValue = undefined;
     currentOperandContainer.textContent = answer;
     previousOperandContainer.textContent = "";
 }
 
 function multiply(variableOne, variableTwo) {
-    let a = parseFloat(variableOne.join(''));
-    let b = parseFloat(variableTwo.join(''));
+    let a = parseFloat(variableOne.join('')) || 0;
+    let b = parseFloat(variableTwo.join('')) || 0;
     answer = a * b;
     variableOne.length = 0;
-    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
-    // empty variableTwo
     variableTwo.length = 0;
-    // remove value for operatorValue
-    operatorValue = undefined;
     currentOperandContainer.textContent = answer;
     previousOperandContainer.textContent = "";
 }
 
 function divide(variableOne, variableTwo) {
-    let a = parseFloat(variableOne.join(''));
-    let b = parseFloat(variableTwo.join(''));
+    let a = parseFloat(variableOne.join('')) || 0;
+    let b = parseFloat(variableTwo.join('')) || 0;
     if (b === 0) {
         answer = "lmao";
     } else {
         answer = a / b;
     }
     variableOne.length = 0;
-    // set variableOne = answer
     variableOne.push(...answer.toString().split(""));
-    // empty variableTwo
     variableTwo.length = 0;
-    // remove value for operatorValue
-    operatorValue = undefined;
     currentOperandContainer.textContent = answer;
     previousOperandContainer.textContent = "";
 }
