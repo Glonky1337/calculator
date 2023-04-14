@@ -125,25 +125,13 @@ function assignVariableTwo(buttonValue) {
             variableTwo = percentConversion(variableTwo);
             break;
         case 'divide':
-            console.log(`variableOne = ${variableOne}`);
-            console.log(`operatorValue = ${operatorValue}`);
-            console.log(`variableTwo = ${variableTwo}`);
             evaluateExpression(variableOne, operatorValue, variableTwo);
-            console.log(`variableOne After = ${variableOne}`);
-            console.log(`operatorValue After= ${operatorValue}`);
-            console.log(`variableTwo After= ${variableTwo}`);
             operatorValue = '÷';
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
             break;
         case 'multiply':
-            console.log(`variableOne = ${variableOne}`);
-            console.log(`operatorValue = ${operatorValue}`);
-            console.log(`variableTwo = ${variableTwo}`);
             evaluateExpression(variableOne, operatorValue, variableTwo);
-            console.log(`variableOne After = ${variableOne}`);
-            console.log(`operatorValue After= ${operatorValue}`);
-            console.log(`variableTwo After= ${variableTwo}`);
             operatorValue = 'x';
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
@@ -223,12 +211,21 @@ function subtract(variableOne, variableTwo) {
 function multiply(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join('')) || 0;
     let b = parseFloat(variableTwo.join('')) || 0;
-    answer = a * b;
-    variableOne.length = 0;
-    variableOne.push(...answer.toString().split(""));
-    variableTwo.length = 0;
-    currentOperandContainer.textContent = answer;
-    previousOperandContainer.textContent = "";
+    if (b === 0) {
+        answer = 0;
+        variableOne.length = 0;
+        variableOne.push(0);
+        currentOperandContainer.textContent = answer;
+        previousOperandContainer.textContent = "";
+        variableTwo.length = 0;
+    } else {
+        answer = a * b;
+        variableOne.length = 0;
+        variableOne.push(...answer.toString().split(""));
+        variableTwo.length = 0;
+        currentOperandContainer.textContent = answer;
+        previousOperandContainer.textContent = "";
+    }
 }
 
 function divide(variableOne, variableTwo) {
@@ -264,7 +261,11 @@ function percentConversion(e) {
     return e;
 }
 
-// 9 + 2 = [ans] % [ans] + \\ success
-// 9 - 2 = [ans] % [ans] - \\ success
-// 9 * 2 = [ans] % [ans] * \\ fail - variableOne becomes "0"
-// 9 ÷ 2 = [ans] % [ans] ÷ \\ fail - variableOne becomes "NaN"
+// console.log(`variableOne = ${variableOne}`);
+// console.log(`operatorValue = ${operatorValue}`);
+// console.log(`variableTwo = ${variableTwo}`);
+
+
+// console.log(`variableOne After = ${variableOne}`);
+// console.log(`operatorValue After= ${operatorValue}`);
+// console.log(`variableTwo After= ${variableTwo}`);
