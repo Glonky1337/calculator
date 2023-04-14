@@ -118,8 +118,8 @@ function assignVariableTwo(buttonValue) {
             clearDisplay();
             break;
         case 'delete':
-            deleteValue(variableTwo);
-            updateCurrentOperandContainer(variableTwo);
+            deleteValue(variableOne);
+            updateCurrentOperandContainer(variableOne);
             break;
         case 'percent':
             variableTwo = percentConversion(variableTwo);
@@ -210,21 +210,22 @@ function subtract(variableOne, variableTwo) {
 
 function multiply(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join('')) || 0;
-    let b = parseFloat(variableTwo.join('')) || 0;
-    if (b === 0) {
-        answer = 0;
-        variableOne.length = 0;
-        variableOne.push(0);
-        currentOperandContainer.textContent = answer;
-        previousOperandContainer.textContent = "";
-        variableTwo.length = 0;
-    } else {
-        answer = a * b;
-        variableOne.length = 0;
-        variableOne.push(...answer.toString().split(""));
-        variableTwo.length = 0;
-        currentOperandContainer.textContent = answer;
-        previousOperandContainer.textContent = "";
+    let b = parseFloat(variableTwo.join(''));
+    if (!isNaN(b)) {
+        if (b === 0) {
+            answer = a * 0;
+            variableOne.length = 0;
+            variableOne.push(...answer.toString().split(""));
+            currentOperandContainer.textContent = answer;
+            previousOperandContainer.textContent = "";
+        } else {
+            answer = a * b;
+            variableOne.length = 0;
+            variableOne.push(...answer.toString().split(""));
+            variableTwo.length = 0;
+            currentOperandContainer.textContent = answer;
+            previousOperandContainer.textContent = "";
+        }
     }
 }
 
