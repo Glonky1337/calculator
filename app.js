@@ -67,6 +67,10 @@ function assignVariableOne(buttonValue) {
             updateCurrentOperandContainer(variableOne);
             break;
         case 'percent':
+            console.log(":::::::::::::ONE:::::::::::");
+            console.log(`variableOne = ${variableOne}`);
+            console.log(`operatorValue = ${operatorValue}`);
+            console.log(`variableTwo = ${variableTwo}`);
             variableOne = percentConversion(variableOne);
             break;
         case 'divide':
@@ -122,7 +126,11 @@ function assignVariableTwo(buttonValue) {
             updateCurrentOperandContainer(variableOne);
             break;
         case 'percent':
-            variableTwo = percentConversion(variableTwo);
+            console.log(":::::::::::::TWO:::::::::::");
+            console.log(`variableOne = ${variableOne}`);
+            console.log(`operatorValue = ${operatorValue}`);
+            console.log(`variableTwo = ${variableTwo}`);
+            variableOne = percentConversion(variableOne);
             break;
         case 'divide':
             evaluateExpression(variableOne, operatorValue, variableTwo);
@@ -190,6 +198,9 @@ function add(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join('')) || 0;
     let b = parseFloat(variableTwo.join('')) || 0;
     answer = a + b;
+    if (answer % 1 !== 0) { // check if answer has decimals
+        answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+    }
     variableOne.length = 0;
     variableOne.push(...answer.toString().split(""));
     variableTwo.length = 0;
@@ -201,6 +212,9 @@ function subtract(variableOne, variableTwo) {
     let a = parseFloat(variableOne.join('')) || 0;
     let b = parseFloat(variableTwo.join('')) || 0;
     answer = a - b;
+    if (answer % 1 !== 0) { // check if answer has decimals
+        answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+    }
     variableOne.length = 0;
     variableOne.push(...answer.toString().split(""));
     variableTwo.length = 0;
@@ -220,6 +234,9 @@ function multiply(variableOne, variableTwo) {
             previousOperandContainer.textContent = "";
         } else {
             answer = a * b;
+            if (answer % 1 !== 0) { // check if answer has decimals
+                answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+            }
             variableOne.length = 0;
             variableOne.push(...answer.toString().split(""));
             variableTwo.length = 0;
@@ -238,6 +255,9 @@ function divide(variableOne, variableTwo) {
         variableTwo.length = 0;
     } else {
         answer = a / b;
+        if (answer % 1 !== 0) { // check if answer has decimals
+            answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+        }
         variableOne.length = 0;
         variableOne.push(...answer.toString().split(""));
         variableTwo.length = 0;
