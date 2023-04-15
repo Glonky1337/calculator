@@ -197,6 +197,7 @@ function add(variableOne, variableTwo) {
     answer = a + b;
     if (answer % 1 !== 0) { // check if answer has decimals
         answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+        decimalAdded = true;
     }
     updateVar(answer);
 }
@@ -207,6 +208,7 @@ function subtract(variableOne, variableTwo) {
     answer = a - b;
     if (answer % 1 !== 0) { // check if answer has decimals
         answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+        decimalAdded = true;
     }
     updateVar(answer);
 }
@@ -222,6 +224,7 @@ function multiply(variableOne, variableTwo) {
             answer = a * b;
             if (answer % 1 !== 0) { // check if answer has decimals
                 answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+                decimalAdded = true;
             }
         updateVar(answer);
         }
@@ -239,6 +242,7 @@ function divide(variableOne, variableTwo) {
         answer = a / b;
         if (answer % 1 !== 0) { // check if answer has decimals
             answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
+            decimalAdded = true;
         }
         updateVar(answer);
     }
@@ -251,11 +255,13 @@ function percentConversion(e) {
         e.length = 0;
         e.push(...answer.toString().split(""));
         currentOperandContainer.textContent = answer;
+        decimalAdded = false;
     } else {
         answer = parsedNumber / 100;
         e.length = 0;
         e.push(...answer.toString().split(""));
         currentOperandContainer.textContent = answer;
+        decimalAdded = true;
     }
     return e;
 }
