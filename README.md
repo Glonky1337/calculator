@@ -1,6 +1,6 @@
 # Calculator
 
-Live: https://glonky1337.github.io/calculator/index.html
+:point_right: [Click Here to View the Live Demo](https://glonky1337.github.io/calculator/index.html) :point_left:
 
 Basic calculator built from scratch without a tutorial.
 
