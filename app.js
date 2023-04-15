@@ -22,10 +22,9 @@ const currentOperandContainer = document.getElementById('current-operand-contain
 function updateCurrentOperandContainer(e) {
     let display = e.join('');
     if (display === '') {
-        currentOperandContainer.textContent = '';
+      currentOperandContainer.textContent = '';
     } else {
-        display = parseFloat(display);
-        currentOperandContainer.textContent = display;
+      currentOperandContainer.textContent = display;
     }
 };
 
@@ -67,10 +66,6 @@ function assignVariableOne(buttonValue) {
             updateCurrentOperandContainer(variableOne);
             break;
         case 'percent':
-            console.log(":::::::::::::ONE:::::::::::");
-            console.log(`variableOne = ${variableOne}`);
-            console.log(`operatorValue = ${operatorValue}`);
-            console.log(`variableTwo = ${variableTwo}`);
             variableOne = percentConversion(variableOne);
             break;
         case 'divide':
@@ -126,10 +121,6 @@ function assignVariableTwo(buttonValue) {
             updateCurrentOperandContainer(variableTwo);
             break;
         case 'percent':
-            console.log(":::::::::::::TWO:::::::::::");
-            console.log(`variableOne = ${variableOne}`);
-            console.log(`operatorValue = ${operatorValue}`);
-            console.log(`variableTwo = ${variableTwo}`);
             variableTwo = percentConversion(variableTwo);
             break;
         case 'divide':
@@ -153,7 +144,6 @@ function assignVariableTwo(buttonValue) {
         case 'add':
             evaluateExpression(variableOne, operatorValue, variableTwo);
             operatorValue = '+';
-            console.log('operator Assigned');
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
             break;
@@ -292,12 +282,3 @@ function percentConversion(e) {
     }
     return e;
 }
-
-// console.log(`variableOne = ${variableOne}`);
-// console.log(`operatorValue = ${operatorValue}`);
-// console.log(`variableTwo = ${variableTwo}`);
-
-
-// console.log(`variableOne After = ${variableOne}`);
-// console.log(`operatorValue After= ${operatorValue}`);
-// console.log(`variableTwo After= ${variableTwo}`);
