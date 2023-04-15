@@ -229,6 +229,8 @@ function multiply(variableOne, variableTwo) {
             answer = a * 0;
             variableOne.length = 0;
             variableOne.push(...answer.toString().split(""));
+            variableTwo.length = 0;
+            operatorValue = undefined;
             currentOperandContainer.textContent = answer;
             previousOperandContainer.textContent = "";
         } else {
@@ -281,4 +283,13 @@ function percentConversion(e) {
         currentOperandContainer.textContent = answer;
     }
     return e;
+}
+
+function updateVariable(answer) {
+    variableOne.length = 0;
+    variableOne.push(...answer.toString().split(""));
+    variableTwo.length = 0;
+    operatorValue = undefined;
+    currentOperandContainer.textContent = answer;
+    previousOperandContainer.textContent = "";
 }
