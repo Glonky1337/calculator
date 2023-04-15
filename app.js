@@ -122,15 +122,15 @@ function assignVariableTwo(buttonValue) {
             clearDisplay();
             break;
         case 'delete':
-            deleteValue(variableOne);
-            updateCurrentOperandContainer(variableOne);
+            deleteValue(variableTwo);
+            updateCurrentOperandContainer(variableTwo);
             break;
         case 'percent':
             console.log(":::::::::::::TWO:::::::::::");
             console.log(`variableOne = ${variableOne}`);
             console.log(`operatorValue = ${operatorValue}`);
             console.log(`variableTwo = ${variableTwo}`);
-            variableOne = percentConversion(variableOne);
+            variableTwo = percentConversion(variableTwo);
             break;
         case 'divide':
             evaluateExpression(variableOne, operatorValue, variableTwo);
@@ -153,6 +153,7 @@ function assignVariableTwo(buttonValue) {
         case 'add':
             evaluateExpression(variableOne, operatorValue, variableTwo);
             operatorValue = '+';
+            console.log('operator Assigned');
             updatePreviousOperandContainer(variableOne, operatorValue);
             decimalAdded = false;
             break;
@@ -190,7 +191,13 @@ function clearDisplay() {
 }
 
 function deleteValue(e) {
-    e.pop()
+    let lastElement = e[e.length - 1];
+    if (lastElement === '.') {
+        e.pop();
+        decimalAdded = false;
+    } else {
+        e.pop();
+    }
 }
 
 // Math functions
@@ -204,6 +211,7 @@ function add(variableOne, variableTwo) {
     variableOne.length = 0;
     variableOne.push(...answer.toString().split(""));
     variableTwo.length = 0;
+    operatorValue = undefined;
     currentOperandContainer.textContent = answer;
     previousOperandContainer.textContent = "";
 }
@@ -218,6 +226,7 @@ function subtract(variableOne, variableTwo) {
     variableOne.length = 0;
     variableOne.push(...answer.toString().split(""));
     variableTwo.length = 0;
+    operatorValue = undefined;
     currentOperandContainer.textContent = answer;
     previousOperandContainer.textContent = "";
 }
@@ -240,6 +249,7 @@ function multiply(variableOne, variableTwo) {
             variableOne.length = 0;
             variableOne.push(...answer.toString().split(""));
             variableTwo.length = 0;
+            operatorValue = undefined;
             currentOperandContainer.textContent = answer;
             previousOperandContainer.textContent = "";
         }
@@ -261,6 +271,7 @@ function divide(variableOne, variableTwo) {
         variableOne.length = 0;
         variableOne.push(...answer.toString().split(""));
         variableTwo.length = 0;
+        operatorValue = undefined;
         currentOperandContainer.textContent = answer;
         previousOperandContainer.textContent = "";
     }
