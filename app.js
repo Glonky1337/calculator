@@ -198,12 +198,7 @@ function add(variableOne, variableTwo) {
     if (answer % 1 !== 0) { // check if answer has decimals
         answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
     }
-    variableOne.length = 0;
-    variableOne.push(...answer.toString().split(""));
-    variableTwo.length = 0;
-    operatorValue = undefined;
-    currentOperandContainer.textContent = answer;
-    previousOperandContainer.textContent = "";
+    updateVar(answer);
 }
 
 function subtract(variableOne, variableTwo) {
@@ -213,12 +208,7 @@ function subtract(variableOne, variableTwo) {
     if (answer % 1 !== 0) { // check if answer has decimals
         answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
     }
-    variableOne.length = 0;
-    variableOne.push(...answer.toString().split(""));
-    variableTwo.length = 0;
-    operatorValue = undefined;
-    currentOperandContainer.textContent = answer;
-    previousOperandContainer.textContent = "";
+    updateVar(answer);
 }
 
 function multiply(variableOne, variableTwo) {
@@ -227,23 +217,13 @@ function multiply(variableOne, variableTwo) {
     if (!isNaN(b)) {
         if (b === 0) {
             answer = a * 0;
-            variableOne.length = 0;
-            variableOne.push(...answer.toString().split(""));
-            variableTwo.length = 0;
-            operatorValue = undefined;
-            currentOperandContainer.textContent = answer;
-            previousOperandContainer.textContent = "";
+            updateVar(answer);
         } else {
             answer = a * b;
             if (answer % 1 !== 0) { // check if answer has decimals
                 answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
             }
-            variableOne.length = 0;
-            variableOne.push(...answer.toString().split(""));
-            variableTwo.length = 0;
-            operatorValue = undefined;
-            currentOperandContainer.textContent = answer;
-            previousOperandContainer.textContent = "";
+        updateVar(answer);
         }
     }
 }
@@ -260,12 +240,7 @@ function divide(variableOne, variableTwo) {
         if (answer % 1 !== 0) { // check if answer has decimals
             answer = answer.toFixed(3).toString().replace(/\.?0*$/, ''); // round to 3 decimal places and remove trailing zeros
         }
-        variableOne.length = 0;
-        variableOne.push(...answer.toString().split(""));
-        variableTwo.length = 0;
-        operatorValue = undefined;
-        currentOperandContainer.textContent = answer;
-        previousOperandContainer.textContent = "";
+        updateVar(answer);
     }
 }
 
@@ -285,7 +260,7 @@ function percentConversion(e) {
     return e;
 }
 
-function updateVariable(answer) {
+function updateVar(answer) {
     variableOne.length = 0;
     variableOne.push(...answer.toString().split(""));
     variableTwo.length = 0;
